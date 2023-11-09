@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>u suck</title>
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+  </head>
+  <body>
+    <script>
+      const app = new PIXI.Application({
+        background: "#1099bb",
+        height: 600,
+        width: 800,
+      });
+
+      document.body.appendChild(app.view);
+
+      const texture = PIXI.Texture.from("misery_resized.png");
+      const img = new PIXI.Sprite(texture);
+
+      img.scale.x = 0.5;
+      img.scale.y = 0.5;
+
+      img.anchor.set(0.5);
+      img.x = app.screen.width / 2;
+      img.y = app.screen.height / 2;
+      app.stage.addChild(img);
+
+      img.eventMode = "dynamic";
+      img.cursor = "pointer";
+
+      let clickCounter = 0;
+
+      img.on("pointerdown", () => {
+        img.x = Math.random() * app.screen.width;
+        img.y = Math.random() * app.screen.height;
+        clickCounter++;
+        console.log(clickCounter);
+      });
+
+      const counterText = new PIXI.Text("", {
+        fontFamily: "Arial",
+        fontSize: 48,
+        fill: 0x000000,
+        align: "center",
+      });
+
+      counterText.x = app.screen.width / 2 - counterText.width / 2;
+      counterText.y = app.screen.height - counterText.height * 2;
+
+      app.stage.addChild(counterText);
+
+      app.ticker.add((delta) => {
+        img.rotation += 0.005 * delta;
+        if (clickCounter > 0) {
+          counterText.text = clickCounter + "x";
+        }
+      });
+    </script>
+  </body>
+</html>
