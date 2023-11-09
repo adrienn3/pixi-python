@@ -1,6 +1,4 @@
-# pixi-python
-
-PixiJS in 5 minutes or less
+pixi-python: PixiJS in 5 minutes or less
 =============
 
 This repository houses all of the sample code used to create a simple application to render a browser based game. Tutorial can be found at:
